@@ -23,7 +23,7 @@ const Wrapper = styled.div`
   z-index: 9999;
   box-sizing: border-box;
   /* background-color: #1b1c22; */
-  background: linear-gradient(193.68deg, #8c6651 0.68%, rgb(112, 82, 64) 100.48%);
+  background: linear-gradient(193.68deg, #282828 0.68%, #404040 100.48%);
   color: ${({ theme }) => theme.bg2};
 
   @media screen and (max-width: 800px) {
@@ -164,8 +164,8 @@ function SideNav({ history }) {
           </AutoColumn>
           <AutoColumn gap="0.5rem" style={{ marginLeft: '.75rem', marginBottom: '4rem' }}>
             <HeaderText>
-              <Link href="https://sushiswapclassic.org" target="_blank">
-                sushiswapclassic.org
+              <Link href="https://griffin.exchange" target="_blank">
+                griffin.exchange
               </Link>
             </HeaderText>
             <HeaderText>
@@ -179,7 +179,7 @@ function SideNav({ history }) {
               </Link>
             </HeaderText>
             <HeaderText>
-              <Link href="https://twitter.com/SushiSwap" target="_blank">
+              <Link href="https://twitter.com/griffinxchange" target="_blank">
                 Twitter
               </Link>
             </HeaderText>
