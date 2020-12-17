@@ -332,8 +332,10 @@ const getChartData = async oldestDateToFetch => {
         },
         fetchPolicy: 'cache-first'
       })
+      console.log('result ok')
       skip += 1000
       data = data.concat(result.data.uniswapDayDatas)
+      console.log('data ok ' + data)
       if (result.data.uniswapDayDatas.length < 1000) {
         allFound = true
       }
@@ -343,16 +345,20 @@ const getChartData = async oldestDateToFetch => {
       let dayIndexSet = new Set()
       let dayIndexArray = []
       const oneDay = 24 * 60 * 60
-
+      console.log('oneDay ' + oneDay)
+      console.log('whatdata ' + data)
       // for each day, parse the daily volume and format for chart array
       data.forEach((dayData, i) => {
         // add the day index to the set of days
         dayIndexSet.add((data[i].date / oneDay).toFixed(0))
         dayIndexArray.push(data[i])
         dayData.dailyVolumeUSD = parseFloat(dayData.dailyVolumeUSD)
+        console.log('looping ' + i)
       })
 
       // fill in empty days ( there will be no day datas if no trades made that day )
+      console.log(data[0])
+      console.log('data0.date ' + data[0].date)
       let timestamp = data[0].date ? data[0].date : oldestDateToFetch
       let latestLiquidityUSD = data[0].totalLiquidityUSD
       let latestDayDats = data[0].mostLiquidTokens
@@ -526,6 +532,8 @@ async function getAllTokensOnUniswap() {
       }
       skipCount = skipCount += TOKENS_TO_FETCH
     }
+    console.log('token', tokens)
+    console.log(process.env.REACT_APP_NETWORK_URL)
     return tokens
   } catch (e) {
     console.log(e)
@@ -588,6 +596,8 @@ export function useGlobalChartData() {
   useEffect(() => {
     async function fetchData() {
       // historical stuff for chart
+      await getAllTokensOnUniswap();
+      console.log('here 2')
       let [newChartData, newWeeklyData] = await getChartData(oldestDateFetch)
       updateChart(newChartData, newWeeklyData)
     }
@@ -677,7 +687,7 @@ export function useTopLps() {
             if (results) {
               return results.liquidityPositions
             }
-          } catch (e) {}
+          } catch (e) { }
         })
       )
 
