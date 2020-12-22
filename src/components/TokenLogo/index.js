@@ -67,9 +67,9 @@ export default function TokenLogo({ address, header = false, size = '24px', ...r
     )
   }
 
-  const path = `https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/${isAddress(
-    address
-  )}/logo.png`
+  const path = isAddress(address) === '0x822fB282DF684464AAfa1B01330Bc0Bdd2c98675'
+    ? `https://griffin.exchange/images/${isAddress(address)}.png`
+    : `https://raw.githubusercontent.com/1Hive/default-token-list/master/src/assets/xdai/${isAddress(address).toLocaleLowerCase()}/logo.png`
 
   return (
     <Inline>
